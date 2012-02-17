@@ -1,8 +1,18 @@
-# This file defines all module routes (Higher priority routes first)
-#
-# import these routes in the main app as :
-# *     /                       module:jaxws
-#
+# Routes
+# This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /?                      Module.index
+# Home page
+GET     /                                       Application.index
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+*     	/ws/{service}							WSController.invoke
+
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}
